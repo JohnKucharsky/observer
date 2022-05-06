@@ -61,6 +61,11 @@ const App = () => {
         </select>
         <h3>Items: {data.length}</h3>
         <h3>Pages loaded: {number}</h3>
+        <button
+          onClick={() => setNumber((prev) => (prev === 1 ? prev : prev - 1))}
+        >
+          Less
+        </button>
       </div>
 
       <table>

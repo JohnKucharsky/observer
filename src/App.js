@@ -46,7 +46,7 @@ const App = () => {
   return (
     <div className="app">
       <div className="search">
-        <h2>Search</h2>
+        <h3>Search</h3>
         <input
           placeholder="name..."
           type="text"
@@ -59,8 +59,8 @@ const App = () => {
             </option>
           ))}
         </select>
-        <h3>Items: {data.length}</h3>
-        <h3>Pages loaded: {number}</h3>
+        <h4>Items: {data.length}</h4>
+        <h4>Pages loaded: {number}</h4>
         <button
           onClick={() => setNumber((prev) => (prev === 1 ? prev : prev - 1))}
         >
@@ -78,13 +78,13 @@ const App = () => {
           </tr>
           {data.map((i) => (
             <tr key={i.id}>
-              <td className="column bor">
-                {i.name} <span> ticket: {i.ticket} </span>
+              <td>
+                {i.name} <br /> <span> ticket: {i.ticket} </span>
               </td>
-              <td className="bor">{i.gender}</td>
-              <td className="bor">{i.survived ? "live" : "dead"}</td>
-              <td className="column">
-                age: {parseInt(i.age)}
+              <td>{i.gender}</td>
+              <td>{i.survived ? "live" : "dead"}</td>
+              <td>
+                age: {parseInt(i.age)} <br />
                 {i.cabin && <span> cabin: {i.cabin} </span>}
               </td>
             </tr>

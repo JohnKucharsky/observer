@@ -9,6 +9,10 @@ const App = () => {
   const triggerRef = useRef(null);
   useEffect(() => {
     if (triggerRef.current) {
+      const config = {
+        rootMargin: "0px 0px 50px 0px",
+        threshold: 0,
+      };
       const container = triggerRef.current;
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -16,7 +20,7 @@ const App = () => {
             setNumber((prev) => prev + 1);
           }
         });
-      });
+      }, config);
       observer.observe(container);
       return () => {
         observer.disconnect();

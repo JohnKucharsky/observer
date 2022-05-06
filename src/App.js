@@ -79,12 +79,12 @@ const App = () => {
           {data.map((i) => (
             <tr key={i.id}>
               <td className="column bor">
-                {i.name} <span> ticket: {i.ticket} </span>{" "}
+                {i.name} <span> ticket: {i.ticket} </span>
               </td>
               <td className="bor">{i.gender}</td>
               <td className="bor">{i.survived ? "live" : "dead"}</td>
               <td className="column">
-                age: {parseInt(i.age)}{" "}
+                age: {parseInt(i.age)}
                 {i.cabin && <span> cabin: {i.cabin} </span>}
               </td>
             </tr>

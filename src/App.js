@@ -1,10 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [number, setNumber] = useState(1);
+  const [number, setNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [option, setOption] = useState(12);
+  const [option, setOption] = useState(30);
+
+  const triggerRef = useRef(null);
+  useEffect(() => {
+    if (triggerRef.current) {
+      const container = triggerRef.current;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setNumber((prev) => prev + 1);
+          }
+        });
+      });
+      observer.observe(container);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, []);
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/altkraft/for-applicants/master/frontend/titanic/passengers.json"
@@ -31,7 +49,7 @@ const App = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <select onChange={(e) => setOption(e.target.value)}>
-          {[12, 20, 40, 60, 80, 100].map((i) => (
+          {[30, 60, 90, 120].map((i) => (
             <option key={i} value={i}>
               {i}
             </option>
@@ -64,12 +82,7 @@ const App = () => {
           ))}
         </tbody>
       </table>
-
-      <button onClick={() => setNumber((prev) => prev + 1)}>More</button>
-
-      {data.length > option && (
-        <button onClick={() => setNumber((prev) => prev - 1)}>Less</button>
-      )}
+      <div ref={triggerRef}></div>
     </div>
   );
 };

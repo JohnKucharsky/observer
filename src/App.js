@@ -28,9 +28,7 @@ const App = () => {
     }
   }, []);
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/altkraft/for-applicants/master/frontend/titanic/passengers.json"
-    )
+    fetch()
       .then((response) => response.json())
       .then((json) =>
         setData(() => {
